@@ -1,0 +1,65 @@
+/* doc.css — أنماط المستند المطبوع (المعاينة وملف PDF). كل الأبعاد بالنقطة/السنتيمتر لتطابق Word */
+@page { size: A4; margin: 0; }
+
+.qdoc { direction: rtl; color: #000; font-family: var(--doc-font); -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  font-kerning: normal; text-rendering: geometricPrecision; }
+.qdoc * { box-sizing: border-box; }
+.qdoc .p { margin: 0; padding: 0; white-space: pre-wrap; overflow-wrap: break-word; }
+.qdoc .blk { position: relative; }
+.qdoc b { font-weight: 700; }
+.qdoc .qm { white-space: nowrap; }
+.qdoc .qm svg { overflow: visible; }
+
+/* صناديق العناوين */
+.qdoc .box { border: var(--rule) solid var(--rule-color); padding: var(--box-pad-v) var(--box-pad-h); }
+.qdoc .title-box { background: var(--title-fill); }
+.qdoc .cat-def { margin-top: 1pt; }
+
+/* الخيارات */
+.qdoc table { border-collapse: collapse; border-spacing: 0; table-layout: fixed; width: 100%; }
+.qdoc table td { padding: 0 var(--cell-pad); vertical-align: top; text-align: right; }
+.qdoc table.opts td.lab { white-space: nowrap; }
+.qdoc table.opts td.correct { background: var(--correct-fill); font-weight: 700; }
+
+/* جدول المقارنة */
+.qdoc table.cmp td { width: 50%; border: var(--rule) solid var(--rule-color); padding: var(--box-pad-v) var(--box-pad-h); vertical-align: middle; }
+
+/* السؤال مع شكل جانبي */
+.qdoc table.side td { padding: 0; vertical-align: top; }
+.qdoc table.side td.side-fig { padding-right: 0.2cm; }
+
+/* الصور */
+.qdoc .imgp { text-align: center; line-height: 0; font-size: 1pt; }
+.qdoc .imgp img { display: block; margin: 0 auto; object-fit: contain; }
+.qdoc .cap { color: #000; }
+
+/* الصفحات */
+.qdoc .page { width: 21cm; height: 29.7cm; position: relative; overflow: hidden; background: #fff; break-after: page; page-break-after: always; }
+.qdoc .page:last-child { break-after: auto; page-break-after: auto; }
+.qdoc .pbody { position: absolute; }
+.qdoc .col { position: absolute; top: 0; height: 100%; }
+.qdoc .col-sep { position: absolute; top: 0; height: 100%; }
+
+.qdoc .hdr { position: absolute; display: flex; flex-direction: row; justify-content: space-between; }
+.qdoc .hdr .hbox { border: var(--hdr-border) solid #000; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 1pt 3pt; overflow: hidden; }
+.qdoc .hdr .hbox .p { width: 100%; text-align: center; }
+.qdoc .hdr-rule { position: absolute; border-top: 0.75pt solid #000; height: 0; }
+.qdoc .ftr { position: absolute; display: flex; justify-content: center; }
+.qdoc .ftr .pnum { border: 0.75pt solid #7F7F7F; display: flex; align-items: center; justify-content: center; background: #fff; }
+
+/* الغلاف */
+.qdoc .cover .cv-top { position: absolute; }
+.qdoc .cover table.cv-table { height: 100%; }
+.qdoc .cover table.cv-table td { border: 0.75pt solid #000; vertical-align: middle; text-align: center; padding: 0 3pt; }
+.qdoc .cover table.cv-table td .p { text-align: center; }
+.qdoc .cover .cv-group { position: absolute; }
+.qdoc .cover .cv-bigbox { border: 1pt solid #000; margin: 0 auto; width: fit-content; }
+.qdoc .cover .cv-remind { border: 1pt solid #000; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; }
+.qdoc .cover .cv-note { position: relative; }
+.qdoc .cover .cv-bullet { position: absolute; top: 0; }
+.qdoc .cover .cv-line { display: flex; white-space: nowrap; overflow: hidden; }
+.qdoc .cover .cv-lab { flex: none; white-space: pre; }
+.qdoc .cover .cv-dots { flex: 1 1 auto; overflow: hidden; white-space: nowrap; min-width: 0; }
+
+/* قياس مخفي */
+.qdoc-measure { position: absolute; left: -10000px; top: 0; visibility: hidden; }

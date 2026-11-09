@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>تصدير</title>
+<link rel="stylesheet" href="/fonts.css">
+<link rel="stylesheet" href="/static/shared/doc.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  @media screen { body { background: #9a9a9a; } .qdoc .page { margin: 0 auto 12px auto; box-shadow: 0 1px 6px rgba(0,0,0,.35); } }
+</style>
+<script src="/static/shared/textutil.js"></script>
+<script src="/static/shared/math.js"></script>
+<script src="/static/shared/model.js"></script>
+<script src="/static/shared/render.js"></script>
+<script src="/static/shared/layout.js"></script>
+</head>
+<body>
+<div id="doc" class="qdoc"></div>
+<script>
+window.QExport = {
+  async loadFonts() {
+    const faces = Array.from(document.fonts);
+    await Promise.allSettled(faces.map((f) => f.load()));
+    await document.fonts.ready;
+    return faces.map((f) => ({ family: f.family.replace(/"/g, ''), weight: String(f.weight), status: f.status }));
+  },
+  async runExam(d) {
+    const r = await QLayout.run(d, document.getElementById('doc'));
+    window.__last = r;
+    document.title = (d.exam && d.exam.title) || 'اختبار';
+    return { blocks: r.blocks, plan: r.plan, answerKey: r.answerKey, warnings: r.warnings, overflow: r.overflow,
+             brokenImages: r.brokenImages, info: r.info, cover: r.cover, math: r.math, heights: r.heights, geometry: r.geometry, colCapacityPt: r.colCapacityPt,
+             pageCount: document.querySelectorAll('#doc .page').length };
+  },
+  mathImages(scale) { return QLayout.mathImages(window.__last.mathCtx, scale || 6); },
+  runKey(d) {
+    const r = QLayout.runAnswerKey(d, document.getElementById('doc'));
+    document.title = 'مفتاح الإجابة';
+    return r;
+  },
+};
+window.QExportReady = true;
+</script>
+</body>
+</html>
